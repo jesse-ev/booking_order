@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="work_order_template" name="Work Order">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table table-bordered">
+                            <tbody>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <span t-field="doc.name" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>Team Name</span>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.booking_team_id.name" />
+                                    </td>
+                                    <td>
+                                        <span>Customer</span>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sale_order_id.partner_id.name" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span>Booking Order Ref</span>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.sale_order_id.name" />
+                                    </td>
+                                    <td>
+                                        <span>Date</span>
+                                    </td>
+                                    <td>
+                                        <span t-field="doc.planned_start" /> - <span t-field="doc.planned_end" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <h1>Notes : </h1> <br></br>
+                                        <span t-field="doc.notes" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <h1>Signature : </h1> <br></br>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

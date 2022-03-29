@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    
+    <!-- Form view for "booking order" -->
+    <record id="sale_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <header>
+                <button name="button_check_team_availability" string="Check team availability" class="button" type="object"/>
+            </header>
+            <field name="partner_id" position="after">
+                <field name="is_booking_order"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="view_employee_form" model="ir.ui.view">
+   	    <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+	        <notebook>
+                <page name="name" string="Booking Order" attrs="{ 'invisible': [('is_booking_order', '=', False)] }">
+                    <group>
+                        <field name="booking_team_id" nolabel='0'/>
+                        <field name="team_leader_id" readonly="1" nolabel='0' placeholder='anon'/>
+                        <!-- <button name="check_team" type="object" string="Check Team Availability" style="margin:12px"/> -->
+                        <field name="team_member_ids" readonly="1" nolabel='0'/>
+                        <field name="team_availability"/>
+                        <field name="booking_start" nolabel='0'/>
+                        <field name="booking_end" nolabel='0'/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <!-- sale.order inherit search view -->
+    <record id="sale_order_inherit_search" model="ir.ui.view">
+        <field name="name">sale.order.inherit.view.search</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <filter string="Booking Order" name="booking_order" domain="[('is_booking_order', '=', True)]"/>
+            </field>  
+        </field>
+    </record>
+
+     <!-- booking.order_views action window -->
+    <record id="order_views_action" model="ir.actions.act_window">
+        <field name="name">Booking Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="context">{
+            'search_default_booking_order':1,
+            'default_is_booking_order':True,
+        }
+        </field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="booking_service_team_menu_act" 
+    name="Booking Order" 
+    parent="menu_sale_appointment" 
+    action="order_views_action" 
+    sequence="20"/>
+</odoo>

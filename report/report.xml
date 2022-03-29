@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="record_booking_order_sale_work_order" model="ir.actions.report">
+        <field name="name">Work Order Report</field>
+        <field name="model">sale.work.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">booking_order_jess.work_order_template</field>
+        <field name="report_file">booking_order_jess.work_order_template</field>
+        <field name="binding_model_id" ref="model_sale_work_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

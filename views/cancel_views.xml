@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    
+    <!-- booking.order.cancel form view -->
+    <record id="booking_order_cancel_view_form" model="ir.ui.view">
+        <field name="name">Cancel</field>
+        <field name="model">booking.order.cancel</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="work_order_id"/>
+                        <field name="reason"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- booking.order.cancel action window -->
+    <record id="booking_order_cancel_action" model="ir.actions.act_window">
+        <field name="name">booking.order.cancel.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">booking.order.cancel</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
